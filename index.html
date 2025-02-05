@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spotify Clone</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+    <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <i class="fa-solid fa-music"></i>
+            <span class="ms-2">MusicAura</span>
+        </a>
+       
+        <div class="d-flex flex-grow-1 justify-content-center align-items-center">
+            <button class="btn btn-dark rounded-circle me-2 home-btn">
+                <i class="fas fa-home"></i>
+            </button>
+            <div class="search-box d-flex align-items-center">
+                <i class="fas fa-search text-white me-2"></i>
+                <input type="search" placeholder="What do you want to play?" aria-label="Search">
+            </div>
+        </div>
+       
+        <div class="d-flex align-items-center app-control">
+            <i class="fas fa-bell text-white me-3"></i>
+            <div class="profile-circle">Koli</div>
+        </div>
+    </div>
+</nav>
+
+
+<div class="row main-container">
+    
+    <aside class="col-md-2 sidebar">
+       
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a href="#" class="nav-link active" data-bs-toggle="tooltip" title="Go to Home">
+                    <i class="fas fa-home"></i> Home
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link" data-bs-toggle="tooltip" title="Search for Songs">
+                    <i class="fas fa-search"></i> Search
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link" data-bs-toggle="tooltip" title="View Your Library">
+                    <i class="fas fa-book"></i> Your Library
+                </a>
+            </li>
+        </ul>
+
+        
+        <div class="playlists mt-4">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <h6 class="mb-0">PLAYLISTS</h6>
+                <button class="btn btn-sm btn-outline-light rounded-circle" id="toggle-playlists" data-bs-toggle="tooltip" title="Collapse/Expand Playlists">
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+            </div>
+            <ul class="nav flex-column playlist-list" id="playlist-list">
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-bs-toggle="tooltip" title="Create a New Playlist">
+                        <i class="fas fa-plus"></i> Create Playlist
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-bs-toggle="tooltip" title="View Liked Songs">
+                        <i class="fas fa-heart"></i> Liked Songs
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-bs-toggle="tooltip" title="Workout Mix">
+                        <i class="fas fa-dumbbell"></i> Workout Mix
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-bs-toggle="tooltip" title="Study Focus">
+                        <i class="fas fa-book-reader"></i> Study Focus
+                    </a>
+                </li>
+            </ul>
+           
+            <div class="mt-3">
+                <input type="text" id="new-playlist-input" class="form-control form-control-sm" placeholder="Add new playlist..." style="display: none;">
+                <button class="btn btn-sm btn-outline-light mt-2" id="add-playlist-btn">
+                    <i class="fas fa-plus"></i> Add Playlist
+                </button>
+            </div>
+        </div>
+    </aside>
+
+   
+    <main class="col-md-10 content">
+        <div class='filter-options m-2 ms-4 mt-3'>
+            <button class='btn btn-outline-light m-2 rounded-4'>All</button>
+            <button class='btn btn-outline-light m-2 rounded-4'>Music</button>
+            <button class='btn btn-outline-light m-2 rounded-4'>Podcasts</button>
+        </div>
+
+       
+        <div class="p-1 overflow-auto ms-0 me-0">
+           
+            <div class="recent-played-container position-relative">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h2 class="ms-4">Recently Played</h2>
+                    <button class="btn btn-outline-light me-3 show-all-btn">Show All</button>
+                </div>
+                <div class="recent-played d-flex overflow-auto m-2 ms-0 me-0"></div>
+                <button class="scroll-btn left justify-content-center"><i class="fa-solid fa-arrow-left"></i></button>
+                <button class="scroll-btn right justify-content-center"><i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+
+           
+            <div class="featured-playlists-container position-relative">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h2 class="ms-4">Featured Playlists</h2>
+                    <button class="btn btn-outline-light me-3 show-all-btn">Show All</button>
+                </div>
+                <div class="featured-playlists d-flex overflow-auto m-2 ms-0 me-0"></div>
+                <button class="scroll-btn left justify-content-center"><i class="fa-solid fa-arrow-left"></i></button>
+                <button class="scroll-btn right justify-content-center"><i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+
+           
+            <div class="favorite-playlists-container position-relative">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h2 class="ms-4">Favorite Playlists</h2>
+                    <button class="btn btn-outline-light me-3 show-all-btn">Show All</button>
+                </div>
+                <div class="favorite-playlists d-flex overflow-auto m-2 ms-0 me-0"></div>
+                <button class="scroll-btn left justify-content-center"><i class="fa-solid fa-arrow-left"></i></button>
+                <button class="scroll-btn right justify-content-center"><i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </main>
+</div>
+
+
+<footer class="player-controls bg-black">
+    <div class="row align-items-center">
+        <div class="col-md-4 current-track d-flex align-items-center">
+            <img src="assets/channa_mereya.jpeg" class="img-fluid me-3" alt="Album Art" aria-label="Currently Playing">
+            <div>
+                <h6 class="mb-0">Channa Mereya</h6>
+                <p class="text mb-0">Arijit Singh</p>
+            </div>
+            <i class="fas fa-heart ms-3" title="Add to Favorites" aria-label="Add to Favorites"></i>
+        </div>
+        <div class="col-md-4 justify-content-center">
+            <div class="player-buttons d-flex justify-content-center mt-0">
+                <button class="btn btn-link text-white"><i class="fas fa-random" aria-label="Shuffle"></i></button>
+                <button class="btn btn-link text-white"><i class="fas fa-step-backward" aria-label="Previous"></i></button>
+                <button class="btn play-pause-btn" style="border-radius: 50%;" id="play-pause-btn" aria-label="Play/Pause">
+                    <i class="fas fa-play"></i>
+                </button>
+                <button class="btn btn-link text-white"><i class="fas fa-step-forward" aria-label="Next"></i></button>
+                <button class="btn btn-link text-white"><i class="fas fa-redo" aria-label="Repeat"></i></button>
+            </div>
+            <div class="progress-container d-flex align-items-center text-light-gray">
+                <span id="current-time">0:00</span>
+                <input type="range" id="progress-bar" value="0" step="1" min="0" max="100" aria-label="Progress">
+                <span id="total-time">0:00</span>
+            </div>
+        </div>
+       
+        <div id="volume-control" class="col-md-4 volume-control d-flex align-items-center justify-content-end" style="color: lightgray;">
+            <i class="fas fa-volume-up me-3" aria-label="Volume"></i>
+            <input type="range" class="form-range me-2" value="75" aria-label="Volume">
+        </div>
+    </div>
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script src="script.js"></script>
+</body>
+</html>
